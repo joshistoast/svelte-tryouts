@@ -33,15 +33,13 @@ const navItems = [
 </svelte:head>
 
 <header>
-  <nav
-    class="nav"
-  >
+  <nav class="nav">
     {#each navItems as item, i}
       <ListItem
-        selected={path === item.to}
         href={item.to}
         role="link"
         aria-label={item.label}
+        selected={path === item.to}
       >
         {item.label}
       </ListItem>

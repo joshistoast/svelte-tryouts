@@ -1,6 +1,6 @@
-import type { PageLoad } from './$types'
+import type { PageServerLoad } from './$types'
 
-export const load: PageLoad = (async ({
+export const load: PageServerLoad = (async ({
   route,
   params,
   fetch
@@ -13,6 +13,6 @@ export const load: PageLoad = (async ({
   })
 
   return {
-    words: await res.json(),
+    data: await res.json(),
   }
 })

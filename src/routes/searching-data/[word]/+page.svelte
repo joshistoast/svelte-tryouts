@@ -4,14 +4,28 @@ import {
   TextBlock,
   Expander,
   InfoBadge,
+  Button,
 } from 'fluent-svelte'
 
 import type { PageData } from './$types'
 export let data: PageData
+
+const goBack = () => {
+  history.back()
+}
 </script>
 
-{#if data.words}
-  {#each data.words as word, i}
+<div style="display:block;">
+  <Button
+    on:click={goBack}
+  >
+    Go Back
+  </Button>
+</div>
+
+
+{#if data.data.length}
+  {#each data.data as word, i}
     <TextBlock>
       <h1 style="text-transform: capitalize">{word.word}</h1>
       {#if word.origin}
@@ -44,7 +58,11 @@ export let data: PageData
       </div>
   {/each}
 {:else}
-  <InfoBar>
-    No words found
+  <InfoBar
+    closable={false}
+    severity="critical"
+  >
+    <h1>{data.data.title || 'No words found'}</h1>
+    <p>{data.data.message}</p>
   </InfoBar>
 {/if}
